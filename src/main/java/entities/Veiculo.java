@@ -1,6 +1,6 @@
 package entities;
 
-import enums.TipoVeiculo;
+import entities.enums.TipoVeiculo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
