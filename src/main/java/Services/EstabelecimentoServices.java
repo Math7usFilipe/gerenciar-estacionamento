@@ -19,7 +19,7 @@ public class EstabelecimentoServices {
         return estabelecimentoRepository.save(estabelecimento);
     }
     //Read all
-    public List<Estabelecimento> listarEstabelecimento(Estabelecimento estabelecimento) {
+    public List<Estabelecimento> listarEstabelecimento() {
         return estabelecimentoRepository.findAll();
     }
     //Read by id
