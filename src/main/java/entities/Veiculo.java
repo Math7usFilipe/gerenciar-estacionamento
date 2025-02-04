@@ -1,5 +1,6 @@
 package entities;
 
+import enums.TipoVeiculo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,31 +8,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table (name = "estabelecimento")
+@Table (name = "veiculos")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Estabelecimento {
+public class Veiculo {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column (nullable = false, unique = false)
-    private String nome;
+    @Column (nullable = false)
+    private String marca;
 
     @Column (nullable = false)
-    private String cnpj;
+    private String modelo;
 
     @Column (nullable = false)
-    private String endereco;
+    private String cor;
 
     @Column (nullable = false)
-    private int telefone;
+    private String placa;
 
     @Column (nullable = false)
-    private int vagasMotos;
-
-    @Column (nullable = false)
-    private int vagasCarros;
+    private TipoVeiculo tipo;
 }
