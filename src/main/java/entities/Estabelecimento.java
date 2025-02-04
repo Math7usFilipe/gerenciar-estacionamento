@@ -32,6 +32,7 @@ public class Estabelecimento {
     @Column (nullable = false)
     private int vagasMotos;
 
+    @Enumerated (EnumType.STRING)
     @Column (nullable = false)
     private int vagasCarros;
 }
