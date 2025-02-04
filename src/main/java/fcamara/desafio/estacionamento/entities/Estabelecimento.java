@@ -1,4 +1,4 @@
-package entities;
+package fcamara.desafio.estacionamento.entities;
 
 import jakarta.persistence.*;
 

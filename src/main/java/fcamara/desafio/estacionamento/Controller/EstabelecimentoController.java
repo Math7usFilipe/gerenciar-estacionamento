@@ -1,7 +1,7 @@
-package Controller;
+package fcamara.desafio.estacionamento.Controller;
 
-import Services.EstabelecimentoServices;
-import entities.Estabelecimento;
+import fcamara.desafio.estacionamento.Services.EstabelecimentoServices;
+import fcamara.desafio.estacionamento.entities.Estabelecimento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

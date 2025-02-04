@@ -1,6 +1,6 @@
-package repositories;
+package fcamara.desafio.estacionamento.repositories;
 
-import entities.Movimentacao;
+import fcamara.desafio.estacionamento.entities.Movimentacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

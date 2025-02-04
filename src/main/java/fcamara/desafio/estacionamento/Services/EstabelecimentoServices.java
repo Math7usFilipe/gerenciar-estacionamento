@@ -1,9 +1,9 @@
-package Services;
+package fcamara.desafio.estacionamento.Services;
 
-import entities.Estabelecimento;
+import fcamara.desafio.estacionamento.entities.Estabelecimento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.EstabelecimentoRepository;
+import fcamara.desafio.estacionamento.repositories.EstabelecimentoRepository;
 
 import java.util.List;
 import java.util.Optional;
