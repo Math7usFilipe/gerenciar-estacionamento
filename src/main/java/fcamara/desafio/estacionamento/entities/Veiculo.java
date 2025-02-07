@@ -88,17 +88,4 @@ public class Veiculo {
     public void setTipo(TipoVeiculo tipo) {
         this.tipo = tipo;
     }
-
-    // Método toString (opcional, mas útil para debug)
-    @Override
-    public String toString() {
-        return "Veiculo{" +
-                "id=" + id +
-                ", marca='" + marca + '\'' +
-                ", modelo='" + modelo + '\'' +
-                ", cor='" + cor + '\'' +
-                ", placa='" + placa + '\'' +
-                ", tipo=" + tipo +
-                '}';
-    }
 }
