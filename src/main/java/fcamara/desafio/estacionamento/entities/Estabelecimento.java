@@ -20,14 +20,14 @@ public class Estabelecimento {
     private String endereco;
 
     @Column (nullable = false)
-    private int telefone;
+    private String telefone;
 
     @Column (nullable = false)
     private int vagasMotos;
 
     public Estabelecimento() {}
 
-    public Estabelecimento(Long id, String nome, String cnpj, String endereco, int telefone, int vagasMotos) {
+    public Estabelecimento(Long id, String nome, String cnpj, String endereco, String telefone, int vagasMotos) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -68,11 +68,11 @@ public class Estabelecimento {
         this.endereco = endereco;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
