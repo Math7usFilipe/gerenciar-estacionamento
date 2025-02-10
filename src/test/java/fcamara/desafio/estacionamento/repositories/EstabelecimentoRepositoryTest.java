@@ -19,5 +19,5 @@ class EstabelecimentoRepositoryTest {
     @Test
     void findByCnpj() {
     }
-    
+
 }
