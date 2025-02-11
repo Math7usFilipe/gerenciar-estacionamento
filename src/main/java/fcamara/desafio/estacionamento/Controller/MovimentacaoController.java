@@ -1,6 +1,7 @@
 package fcamara.desafio.estacionamento.Controller;
 
 import fcamara.desafio.estacionamento.Services.MovimentacaoService;
+import fcamara.desafio.estacionamento.entities.Movimentacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +33,23 @@ public class MovimentacaoController {
         LocalDateTime fimDate = LocalDateTime.parse(fim);
         String sumario = movimentacaoService.gerarSumarioPorHora(inicoDate, fimDate);
         return ResponseEntity.ok(sumario);
+    }
+
+    @GetMapping ("/entrada")
+    public ResponseEntity<Movimentacao> registrarEntrada(@RequestBody Movimentacao movimentacao) {
+        Movimentacao novaMovimentacao = movimentacaoService.registrarEntrada(movimentacao);
+        return ResponseEntity.ok(novaMovimentacao);
+    }
+
+    @PutMapping("/saida/{id}")
+    public ResponseEntity<Movimentacao> registrarSaida(@PathVariable Long id) {
+        try {
+            Movimentacao movimentacaoAtualizada = movimentacaoService.registrarSaida(id);
+            return ResponseEntity.ok(movimentacaoAtualizada);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 }

@@ -73,4 +73,24 @@ public class MovimentacaoService {
     public Optional<Movimentacao> obterUltimaMovimentacao(Long id) {
         return movimentacaoRepository.findTopByVeiculoIdOrderByDataEntradaDesc(id);
     }
+
+    public Movimentacao registrarEntrada(Movimentacao movimentacao) {
+        movimentacao.setDataEntrada(LocalDateTime.now());
+        return movimentacaoRepository.save(movimentacao);
+    }
+
+    public Movimentacao registrarSaida(Long id) {
+        Optional<Movimentacao> movimentacaoOpt = movimentacaoRepository.findById(id);
+
+        if(movimentacaoOpt.isPresent()) {
+            Movimentacao movimentacao = movimentacaoOpt.get();
+            if(movimentacao.getDataSaida() != null) {
+                throw new IllegalStateException("Este veículo já foi registrado como saído.");
+            }
+            movimentacao.setDataSaida(LocalDateTime.now());
+            return movimentacaoRepository.save(movimentacao);
+        } else {
+            throw new IllegalArgumentException("Movimentação com ID " + id + " não encontrada.");
+        }
+    }
 }
