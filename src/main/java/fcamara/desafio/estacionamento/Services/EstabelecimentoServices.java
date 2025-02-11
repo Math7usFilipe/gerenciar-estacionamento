@@ -30,12 +30,13 @@ public class EstabelecimentoServices {
     public Estabelecimento atualizarEstabelecimento(Long id, Estabelecimento estabelecimentoAtualizado) {
         return estabelecimentoRepository.findById(id)
                 .map(estabelecimento -> {
-                    estabelecimento.setNome(estabelecimento.getNome());
-                    estabelecimento.setEndereco(estabelecimento.getEndereco());
-                    estabelecimento.setTelefone(estabelecimento.getTelefone());
+                    // Atualiza os campos com os valores do estabelecimentoAtualizado
+                    estabelecimento.setNome(estabelecimentoAtualizado.getNome());
+                    estabelecimento.setEndereco(estabelecimentoAtualizado.getEndereco());
+                    estabelecimento.setTelefone(estabelecimentoAtualizado.getTelefone());
                     return estabelecimentoRepository.save(estabelecimento);
                 })
-                .orElseThrow(() -> new RuntimeException("Estabelecimento não encontrado com o ID:" + id));
+                .orElseThrow(() -> new RuntimeException("Estabelecimento não encontrado com o ID: " + id));
     }
     //Delete
     public void deletarEstabelecimento(Long id) {

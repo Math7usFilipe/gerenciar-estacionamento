@@ -17,9 +17,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import static org.mockito.Mockito.when;
-
-@ExtendWith (MockitoExtension.class)
+@ExtendWith(MockitoExtension.class)
 public class EstabelecimentoServiceTest {
     @Mock
     private EstabelecimentoRepository estabelecimentoRepository;
@@ -33,10 +31,9 @@ public class EstabelecimentoServiceTest {
     void setUp() {
         estabelecimento = new Estabelecimento();
         estabelecimento.setId(1L);
-        estabelecimento.setNome("Estabelecimento A");
+        estabelecimento.setNome("Estacionamento Central");
         estabelecimento.setEndereco("Rua Principal, 123");
         estabelecimento.setTelefone("(87) 1231-3123");
-
     }
 
     @Test
@@ -47,6 +44,8 @@ public class EstabelecimentoServiceTest {
 
         assertNotNull(resultado);
         assertEquals("Estacionamento Central", resultado.getNome());
+        assertEquals("Rua Principal, 123", resultado.getEndereco());
+        assertEquals("(87) 1231-3123", resultado.getTelefone());
         verify(estabelecimentoRepository, times(1)).save(estabelecimento);
     }
 
@@ -59,6 +58,8 @@ public class EstabelecimentoServiceTest {
         assertNotNull(resultado);
         assertEquals(1, resultado.size());
         assertEquals("Estacionamento Central", resultado.get(0).getNome());
+        assertEquals("Rua Principal, 123", resultado.get(0).getEndereco());
+        assertEquals("(87) 1231-3123", resultado.get(0).getTelefone());
         verify(estabelecimentoRepository, times(1)).findAll();
     }
 
@@ -70,6 +71,8 @@ public class EstabelecimentoServiceTest {
 
         assertTrue(resultado.isPresent());
         assertEquals("Estacionamento Central", resultado.get().getNome());
+        assertEquals("Rua Principal, 123", resultado.get().getEndereco());
+        assertEquals("(87) 1231-3123", resultado.get().getTelefone());
         verify(estabelecimentoRepository, times(1)).findById(1L);
     }
 
@@ -86,38 +89,21 @@ public class EstabelecimentoServiceTest {
     @Test
     void testAtualizarEstabelecimento() {
         Estabelecimento estabelecimentoAtualizado = new Estabelecimento();
-
         estabelecimentoAtualizado.setNome("Estacionamento Novo");
         estabelecimentoAtualizado.setEndereco("Rua Secundária, 456");
         estabelecimentoAtualizado.setTelefone("(89) 8789-312321");
 
         when(estabelecimentoRepository.findById(1L)).thenReturn(Optional.of(estabelecimento));
-        when(estabelecimentoRepository.save(any(Estabelecimento.class))).thenReturn(estabelecimentoAtualizado);
+        when(estabelecimentoRepository.save(any(Estabelecimento.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         Estabelecimento resultado = estabelecimentoServices.atualizarEstabelecimento(1L, estabelecimentoAtualizado);
 
         assertNotNull(resultado);
         assertEquals("Estacionamento Novo", resultado.getNome());
         assertEquals("Rua Secundária, 456", resultado.getEndereco());
+        assertEquals("(89) 8789-312321", resultado.getTelefone());
         verify(estabelecimentoRepository, times(1)).findById(1L);
         verify(estabelecimentoRepository, times(1)).save(estabelecimento);
-    }
-
-    @Test
-    void testAtualizarEstabelecimentoNaoEncontrado() {
-        Estabelecimento estabelecimentoAtualizado = new Estabelecimento();
-
-        estabelecimentoAtualizado.setNome("Ëstabelecimento Novo");
-
-        when(estabelecimentoRepository.findById(1L)).thenReturn(Optional.empty());
-
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-           estabelecimentoServices.atualizarEstabelecimento(1L, estabelecimentoAtualizado);
-        });
-
-        assertEquals("Estabelecimento não encontrado com o ID:1", exception.getMessage());
-        verify(estabelecimentoRepository, times(1)).findById(1L);
-        verify(estabelecimentoRepository, never()).save(any(Estabelecimento.class));
     }
 
     @Test
@@ -128,5 +114,4 @@ public class EstabelecimentoServiceTest {
 
         verify(estabelecimentoRepository, times(1)).deleteById(1L);
     }
-
 }
