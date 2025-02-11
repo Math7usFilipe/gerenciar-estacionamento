@@ -27,28 +27,17 @@ public class VeiculoService {
         return veiculoRepository.findById(id);
     }
 
-    public Veiculo atualizarVeiculo(Long id, Veiculo veiculo) {
-        if(!veiculoRepository.existsById(id)){
-            throw new RuntimeException("Veículo não encontrado para atualização");
-        }
-        veiculo.setId(id);
-        return veiculoRepository.save(veiculo);
-    }
-
-    public String registrarEntrada(Long id) {
-        Optional<Veiculo> veiculo = veiculoRepository.findById(id);
-        if(veiculo.isEmpty()) {
-            throw new RuntimeException("Veículo não encontrado para entrada");
-        }
-        return "Entrada registrada para o veículo de placa: " + veiculo.get().getPlaca();
-    }
-
-    public String registraSainda(Long id) {
-        Optional<Veiculo> veiculo = veiculoRepository.findById(id);
-        if(veiculo.isEmpty()){
-            throw new RuntimeException("Veículo não encontrado para saída");
-        }
-        return "Saída registrada para o veículo de placa: " + veiculo.get().getPlaca();
+    public Veiculo atualizarVeiculo(Long id, Veiculo veiculoAtualizado) {
+        return veiculoRepository.findById(id)
+                .map(veiculo -> {
+                    veiculo.setMarca(veiculoAtualizado.getMarca());
+                    veiculo.setModelo(veiculoAtualizado.getModelo());
+                    veiculo.setCor(veiculoAtualizado.getCor());
+                    veiculo.setPlaca(veiculoAtualizado.getPlaca());
+                    veiculo.setTipo(veiculoAtualizado.getTipo());
+                    return veiculoRepository.save(veiculo);
+                })
+                .orElseThrow(() -> new RuntimeException("Veículo não encontrado com o ID: " + id));
     }
 
     public List<Veiculo> buscarVeiculosPorId(TipoVeiculo tipo) {

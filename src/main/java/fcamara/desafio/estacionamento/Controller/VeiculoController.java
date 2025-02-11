@@ -46,26 +46,6 @@ public class VeiculoController {
         }
     }
 
-    @PostMapping ("/entrada/{id}")
-    public ResponseEntity<String> registraEntrada(@PathVariable Long id) {
-        try {
-            String msg = veiculoService.registrarEntrada(id);
-            return ResponseEntity.ok(msg);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PostMapping ("/saida/{id}")
-    public ResponseEntity<String> registraSaida(@PathVariable Long id) {
-        try {
-            String msg = veiculoService.registraSainda(id);
-            return ResponseEntity.ok(msg);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
     @GetMapping ("/tipo/{tipo}")
     public ResponseEntity<List<Veiculo>> buscarPorTipo(@PathVariable TipoVeiculo tipo) {
         List<Veiculo> veiculos = veiculoService.buscarVeiculosPorId(tipo);
