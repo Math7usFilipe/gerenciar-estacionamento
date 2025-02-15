@@ -9,9 +9,8 @@ Este projeto é uma API REST para gerenciar um estacionamento de carros e motos.
 - **Spring Boot 3.3.8**: Framework para desenvolvimento rápido de aplicações Java.
 - **Spring Data JPA**: Integração com banco de dados utilizando JPA.
 - **Spring Security**: Para autenticação e controle de acesso.
-- **H2 Database**: Banco de dados em memória (utilizado para desenvolvimento).
+- **H2 Database**: Banco de dados em memória (utilizado para desenvolvimento e testes).
 - **MySQL**: Banco de dados para produção (configurável via Docker).
-- **Lombok**: Biblioteca para redução de boilerplate no código.
 - **JUnit 5**: Framework de testes unitários.
 - **Mockito**: Biblioteca para testes unitários e mocks.
 - **Hibernate**: Framework ORM (Object-Relational Mapping) para mapeamento de entidades Java para tabelas no banco de dados.
