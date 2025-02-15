@@ -162,6 +162,3 @@ Se você deseja contribuir para este projeto, por favor, siga os passos abaixo:
 2. Crie uma nova **branch** para suas alterações.
 3. Envie um **pull request** explicando suas alterações.
 
-## Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).
