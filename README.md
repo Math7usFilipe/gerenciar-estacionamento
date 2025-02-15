@@ -153,12 +153,3 @@ Os testes podem ser executados utilizando o Maven. Para rodar todos os testes do
 ```bash
 ./mvnw test
 ```
-
-## Contribuições
-
-Se você deseja contribuir para este projeto, por favor, siga os passos abaixo:
-
-1. Faça um **fork** deste repositório.
-2. Crie uma nova **branch** para suas alterações.
-3. Envie um **pull request** explicando suas alterações.
-
